@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const button = document.querySelector('.btn-test')
+                const div = document.querySelector('.div-test')
+                button.addEventListener('click', () => {
+                    getTestData().then(response => {
+                        // write the value of 'foo' from the response into the div
+                        div.textContent = response.foo
+                    })
+                })
+            })
+
+            function getTestData() {
+                // does a HTTP GET request to the `/test` route defined on express
+                return fetch('http://localhost:3000/test')
+                    .then((response) => {
+                        return response.json()
+                    })
+            }
+        </script>
+    </head>
+    <body>
+        <div class="div-test">
+        </div>
+        <button class="btn-test">Get data!</button>
+    </body>
+</html>
